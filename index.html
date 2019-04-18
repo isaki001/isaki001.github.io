@@ -1,6 +1,10 @@
+<!DOCTYPE html>
 <head>
 	<style>
 		p.solid {border-style: solid;}
+		body {
+        color: E0FFFF;
+		}
 	</style>
 	<header>
 	
@@ -34,17 +38,19 @@
 			var header = document.querySelector('header');
 			var section = document.querySelector('section');
 			var project = document.getElementById("project").value;
-			var requestURL = "http://localhost:9200/left2/_search?q=" + project;
-			var requestURL2 = "http://localhost:9200/impartial/_search?q=" + project;
-			var requestURL3 = "http://localhost:9200/right/_search?q=" + project;
-			var request = new XMLHttpRequest();
+			
+			var	requestURL = "http://localhost:9200/left2/_search?q=" + project;
+			var	requestURL2 = "http://localhost:9200/impartial2/_search?q=" + project;
+			var	requestURL3 = "http://localhost:9200/right2/_search?q=" + project;
+			var	request = new XMLHttpRequest();
+			
 			request.open('GET', requestURL);
 			request.responseType = 'json';
 			request.send();
 			request.onload = function() 
 				{
-					var superHeroes = request.response;
-					populateHeader(superHeroes);
+					var pages = request.response;
+					populateHeader(pages);
 					document.body.appendChild(Liberal);
 				}
 				
@@ -55,8 +61,8 @@
 			request2.send();
 			request2.onload = function() 
 				{
-					var superHeroes = request2.response;
-					populateHeader2(superHeroes);
+					var pages = request2.response;
+					populateHeader2(pages);
 					
 				}
 				
@@ -66,8 +72,8 @@
 			request3.send();
 			request3.onload = function() 
 				{
-					var superHeroes = request3.response;
-					populateHeader3(superHeroes);
+					var pages = request3.response;
+					populateHeader3(pages);
 					
 				}
 				
@@ -77,7 +83,6 @@
 				Liberal.removeChild(Liberal.lastChild);
 			}
 			Liberal.textContent = "Liberal News";
-			Impartial.textContent = "Impartial News";
 			var count = jsonObj.hits["total"];
 			if (count>10)
 				count = 10;
@@ -86,12 +91,16 @@
 			{
 				var title = document.createElement('p');
 				title.className = "solid";
-				title.textContent = 'title: ' + jsonObj.hits.hits[i]._source["title"];
+				title.textContent = 'Title: ' + jsonObj.hits.hits[i]._source["title"];
 				Liberal.appendChild(title);
 				
 				var desc = document.createElement('p');
 				desc.textContent = 'Description: ' + jsonObj.hits.hits[i]._source["desc"];
 				title.appendChild(desc);
+				
+				var score = document.createElement('p');
+				score.textContent = 'Score: ' + jsonObj.hits.hits[i]["_score"];
+				title.appendChild(score);
 				
 				var temp_link = document.createElement("a");
 				temp_link.href = jsonObj.hits.hits[i]._source["page"];
@@ -104,9 +113,9 @@
 		function populateHeader2(jsonObj) 
 		{
 			document.body.appendChild(Impartial);
-			//while (Impartial.hasChildNodes()) {
-				//Impartial.removeChild(Liberal.lastChild);
-			//}
+			while (Impartial.hasChildNodes()) {
+				Impartial.removeChild(Impartial.lastChild);
+			}
 			
 			Impartial.textContent = "Impartial News";
 			var count = jsonObj.hits["total"];
@@ -117,12 +126,16 @@
 			{
 				var title = document.createElement('p');
 				title.className = "solid";
-				title.textContent = 'title: ' + jsonObj.hits.hits[i]._source["title"];
+				title.textContent = 'Title: ' + jsonObj.hits.hits[i]._source["title"];
 				Impartial.appendChild(title);
 				
 				var desc = document.createElement('p');
 				desc.textContent = 'Description: ' + jsonObj.hits.hits[i]._source["desc"];
 				title.appendChild(desc);
+				
+				var score = document.createElement('p');
+				score.textContent = 'Score: ' + jsonObj.hits.hits[i]["_score"];
+				title.appendChild(score);
 				
 				var temp_link = document.createElement("a");
 				temp_link.href = jsonObj.hits.hits[i]._source["page"];
@@ -135,9 +148,9 @@
 		function populateHeader3(jsonObj) 
 		{
 			document.body.appendChild(Conservative);
-			//while (Impartial.hasChildNodes()) {
-				//Impartial.removeChild(Liberal.lastChild);
-			//}
+			while (Conservative.hasChildNodes()) {
+				Conservative.removeChild(Conservative.lastChild);
+			}
 			
 			Conservative.textContent = "Conservative News";
 			var count = jsonObj.hits["total"];
@@ -148,12 +161,16 @@
 			{
 				var title = document.createElement('p');
 				title.className = "solid";
-				title.textContent = 'title: ' + jsonObj.hits.hits[i]._source["title"];
+				title.textContent = 'Title: ' + jsonObj.hits.hits[i]._source["title"];
 				Conservative.appendChild(title);
 				
 				var desc = document.createElement('p');
 				desc.textContent = 'Description: ' + jsonObj.hits.hits[i]._source["desc"];
 				title.appendChild(desc);
+				
+				var score = document.createElement('p');
+				score.textContent = 'Score: ' + jsonObj.hits.hits[i]["_score"];
+				title.appendChild(score);
 				
 				var temp_link = document.createElement("a");
 				temp_link.href = jsonObj.hits.hits[i]._source["page"];
