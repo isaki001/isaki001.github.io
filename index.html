@@ -83,8 +83,10 @@
 				Liberal.removeChild(Liberal.lastChild);
 			}
 			var count = jsonObj.hits["total"];
+			if(count>10)
+				count = 10;
 			Liberal.textContent = "LIBERAL NEWS (" + count + " Results)";
-			var count = jsonObj.hits["total"];
+			
 			if (count>10)
 				count = 10;
 			var i = 0;
@@ -119,6 +121,8 @@
 			}
 		
 			var count = jsonObj.hits["total"];
+			if(count>10)
+				count = 10;
 			Impartial.textContent = "IMPARTIAL NEWS (" + count + " Results)";
 			
 			if (count>10)
@@ -154,6 +158,8 @@
 				Conservative.removeChild(Conservative.lastChild);
 			}
 			var count = jsonObj.hits["total"];
+			if(count>10)
+				count = 10;
 			Conservative.textContent = "CONSERVATIVE NEWS (" + count + " Results)";
 			
 			if (count>10)
