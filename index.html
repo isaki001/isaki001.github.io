@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
 <head>
 	<style>
 		p.solid {border-style: solid;}
 		body {
         color: E0FFFF;
+		body {
+			background-mage: url("back.jpg")
+		}
 		}
 	</style>
 	<header>
@@ -15,8 +19,7 @@
 
 </head>
 
-<body background-image: url(https://github.com/isaki001/isaki001.github.io/blob/master/back.jpg)>
-
+<body>
 	<form action="#" onsubmit="return false;">
 		<input type="text" id="project"/>
 		<button id="submit" onclick="goToProject()">Go</button>
@@ -83,13 +86,12 @@
 				Liberal.removeChild(Liberal.lastChild);
 			}
 			var count = jsonObj.hits["total"];
-			if(count>10)
-				count = 10;
-			Liberal.textContent = "LIBERAL NEWS (" + count + " Results)";
-			
 			if (count>10)
 				count = 10;
 			var i = 0;
+			Liberal.textContent = "LIBERAL NEWS (" + count + " Results)";
+			
+			
 			for(i=0; i<count; i++)
 			{
 				var title = document.createElement('p');
@@ -121,12 +123,11 @@
 			}
 		
 			var count = jsonObj.hits["total"];
-			if(count>10)
-				count = 10;
-			Impartial.textContent = "IMPARTIAL NEWS (" + count + " Results)";
-			
 			if (count>10)
 				count = 10;
+			var i = 0;
+			Impartial.textContent = "IMPARTIAL NEWS (" + count + " Results)";
+			
 			var i = 0;
 			for(i=0; i<count; i++)
 			{
@@ -158,12 +159,11 @@
 				Conservative.removeChild(Conservative.lastChild);
 			}
 			var count = jsonObj.hits["total"];
-			if(count>10)
-				count = 10;
-			Conservative.textContent = "CONSERVATIVE NEWS (" + count + " Results)";
-			
 			if (count>10)
 				count = 10;
+			var i = 0;
+			Conservative.textContent = "CONSERVATIVE NEWS (" + count + " Results)";
+			
 			var i = 0;
 			for(i=0; i<count; i++)
 			{
