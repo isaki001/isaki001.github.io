@@ -82,7 +82,8 @@
 			while (Liberal.hasChildNodes()) {
 				Liberal.removeChild(Liberal.lastChild);
 			}
-			Liberal.textContent = "Liberal News";
+			var count = jsonObj.hits["total"];
+			Liberal.textContent = "LIBERAL NEWS (" + count + " Results)";
 			var count = jsonObj.hits["total"];
 			if (count>10)
 				count = 10;
@@ -116,9 +117,10 @@
 			while (Impartial.hasChildNodes()) {
 				Impartial.removeChild(Impartial.lastChild);
 			}
-			
-			Impartial.textContent = "Impartial News";
+		
 			var count = jsonObj.hits["total"];
+			Impartial.textContent = "IMPARTIAL NEWS (" + count + " Results)";
+			
 			if (count>10)
 				count = 10;
 			var i = 0;
@@ -151,9 +153,9 @@
 			while (Conservative.hasChildNodes()) {
 				Conservative.removeChild(Conservative.lastChild);
 			}
-			
-			Conservative.textContent = "Conservative News";
 			var count = jsonObj.hits["total"];
+			Conservative.textContent = "CONSERVATIVE NEWS (" + count + " Results)";
+			
 			if (count>10)
 				count = 10;
 			var i = 0;
